@@ -1,0 +1,51 @@
+import axios from "axios";
+// import { getToken } from './auth';
+
+export const apiPokemon = axios.create({
+  baseURL: 'https://pokeapi.co/api/v2/', 
+});
+
+export const apiPokedex = axios.create({
+  baseURL: 'https://pokeapi.co/api/v2/', 
+});
+
+const handlerRequest = (config: any) => {
+  //   const token = getToken();
+  //   if (token) {
+  //     config.headers.Authorization = `Bearer ${token}`;
+  //   }
+
+  return config;
+};
+
+const handlerError = (error: any) => {
+  if (error.response.status === 401) {
+    console.log(`HTTP 401, ${error}`);
+  } else if (error.response.status === 500) {
+    console.log(`HTTP 500, ${error}`);
+  } else {
+    console.log(`HTTP ???, ${error}`);
+  }
+
+  return Promise.reject(error);
+};
+
+apiPokemon.interceptors.request.use(
+  async (config) => handlerRequest(config),
+  async (error) => handlerError(error)
+);
+
+apiPokemon.interceptors.response.use(
+  async (response) => response,
+  async (error) => handlerError(error)
+);
+
+apiPokedex.interceptors.request.use(
+  async (config) => handlerRequest(config),
+  async (error) => handlerError(error)
+);
+
+apiPokedex.interceptors.response.use(
+  async (response) => response,
+  async (error) => handlerError(error)
+);
