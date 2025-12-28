@@ -61,9 +61,9 @@ export class PalletTown extends Scene
         
         
         //flores
-        this.createObstacle({ x: 450, y: 530, width: 20 , height: 20 , interactionMessage: 'Sei que vc pediu cartas de pokemon, mas achei que te colocar em um jogo de pokemon seria mais divertido :P s2 - Lucas Simões'}); // placa campo de flores
+        this.createObstacle({ x: 450, y: 530, width: 20 , height: 20 , interactionMessage: 'Sei que você pediu cartas de Pokémon, mas achei que te colocar dentro de um jogo Pokémon seria mais divertido 😄 Feliz aniversário, Luanita! — Lucas Simões'}); // placa campo de flores
         this.createObstacle({ x: 250, y: 530, width: 150 , height: 10 }); // cerca do canteiro de flores
-        this.createObstacle({ x: 250, y: 680, width: 20 , height: 20 , interactionMessage: 'Eu não conheço todas as flores, mas vou mandar todas que eu puder, incluindo as de Pallet ^^ Feliz aniversário Luanita! Te desejo tudo de melhor sempre, continue sendo essa pessoa boa que eu amo tanto e agora também te desejo que você seja a melhor mãe desse mundo todo, felicidades! - Lucas Simões'}); // placa campo de flores
+        this.createObstacle({ x: 250, y: 680, width: 20 , height: 20 , interactionMessage: 'Não conheço todas as flores do mundo, mas quis deixar esse cantinho aqui pra te desejar coisas boas. Que seu novo ano venha leve, divertido e cheio de conquistas!'}); // placa campo de flores
 
         this.createObstacle({ x: 630, y: 770, width: 250 , height: 10 }); // cerca do canteiro de flores 2
         this.createObstacle({ x: 780, y: 770, width: 20 , height: 20 , interactionMessage: 'Esse é o Laboratório do professor Carvalho! Melhor me apressar e ver o que ele quer comigo...'}); // placa campo do lab
