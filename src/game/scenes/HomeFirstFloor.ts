@@ -34,6 +34,8 @@ export class HomeFirstFloor extends Scene
 
     create ()
     {
+        this.interactiveObstacles = [];
+
         MusicManager.playMusic(this, 'defaultPalletTown');
 
         this.camera = this.cameras.main;
@@ -71,7 +73,19 @@ export class HomeFirstFloor extends Scene
             alpha: 0.5
         });
 
-        this.createObstacle({ x: 460, y: 60, width: 20, height: 50, interactionMessage: 'Esquisito.. não consigo subir, talvez o dev viu que tava dificil resolver os bugs ao voltar... então é melhor só eu reiniciar a pagina ou mesmo só ir no Menu > Voltar a tela inicial' });
+        this.createObstacle({ 
+            x: 460, 
+            y: 60, 
+            width: 20, 
+            height: 50, 
+            teleportTo: {
+                scene: 'HomeSecondFloor',
+                x: 430,
+                y: 90
+            },
+            color: 0x800080, // Purple
+            alpha: 0.5            
+        });
 
 
         

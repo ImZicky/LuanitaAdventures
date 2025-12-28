@@ -31,6 +31,8 @@ export class FinalPhase extends Scene
 
     create ()
     {
+        this.interactiveObstacles = [];
+
         MusicManager.playMusic(this, 'defaultPalletTown');
 
         this.camera = this.cameras.main;

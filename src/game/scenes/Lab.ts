@@ -31,6 +31,8 @@ export class Lab extends Scene
 
     create ()
     {
+        this.interactiveObstacles = [];
+
         MusicManager.playMusic(this, 'defaultPalletTown');
 
         this.camera = this.cameras.main;
@@ -66,6 +68,20 @@ export class Lab extends Scene
             alpha: 0.5
          }); // maquina de teleporte
 
+
+                this.createObstacle({ 
+            x: 280, 
+            y: 550, 
+            width: 50, 
+            height: 30,
+            teleportTo: {
+                scene: 'PalletTown',
+                x: 780,
+                y: 650
+            },
+            color: 0x800080, // Purple
+            alpha: 0.5
+         }); // palletTown
 
 
         this.player.setScale(0.015);

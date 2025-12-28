@@ -25,6 +25,8 @@ export class HomeSecondFloor extends Scene
 
     create (data: { fromBattle?: boolean })
     {
+        this.interactiveObstacles = [];
+
         if (data && data.fromBattle) {
             this.time.delayedCall(500, () => {
                 EventBus.emit('show-dialog', 'Nossa.. mas que sonho foi esse???');
@@ -77,6 +79,7 @@ export class HomeSecondFloor extends Scene
 
         // Register event listeners
         this.registerEventListeners();
+        this.events.once('shutdown', this.shutdown, this);
 
         const animFrameRate = 5; // Velocidade da animação - troca a cada 800ms
 

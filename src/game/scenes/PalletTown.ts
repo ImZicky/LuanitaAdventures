@@ -31,6 +31,8 @@ export class PalletTown extends Scene
 
     create ()
     {
+        this.interactiveObstacles = [];
+
         MusicManager.playMusic(this, 'defaultPalletTown');
 
         this.camera = this.cameras.main;
@@ -46,6 +48,20 @@ export class PalletTown extends Scene
 
         //casas
         this.createObstacle({ x: 250, y: 170, width: 220, height: 150 }); // casa 1
+        
+        this.createObstacle({ 
+            x: 280, 
+            y: 300, 
+            width: 30, 
+            height: 20,
+            teleportTo: {
+                scene: 'HomeFirstFloor',
+                x: 280,
+                y: 390
+            },
+            color: 0x800080, // Purple
+            alpha: 0.5 }); // casa 1
+
         this.createObstacle({ x: 680, y: 170, width: 220, height: 150 }); // casa 2
         this.createObstacle({ x: 630, y: 460, width: 320, height: 150 }); // lab
 
