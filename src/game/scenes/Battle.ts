@@ -28,6 +28,7 @@ export class Battle extends Scene {
     // --- CONTROLE DE ESTADO ---
     private isPlayerTurn: boolean = true;
     private potions: number = 5;
+    private ozempika: number = 1;
 
     constructor() {
         super('Battle');
@@ -45,8 +46,8 @@ export class Battle extends Scene {
         this.cameras.main.setBackgroundColor(0x000000);
 
         // 1. Montar a equipe do jogador (busca de dados)
-        // const playerTeamIds = [448, 94, 6, 658, 724, 418]; // Lucario, Gengar, Charizard, Greninja, Decidueye, Buizel
-        const playerTeamIds = [448] // testing only
+        const playerTeamIds = [448, 94, 6, 658, 724, 418]; // Lucario, Gengar, Charizard, Greninja, Decidueye, Buizel
+        //const playerTeamIds = [448] // testing only
         this.playerTeam = [];
         for (const id of playerTeamIds) {
             const pokemonApi = await pokemonService.getPokemonById(id);
@@ -57,7 +58,7 @@ export class Battle extends Scene {
         this.playerPokemon = this.playerTeam[this.currentPlayerIndex];
 
         // 2. Calcular o HP total e criar o inimigo
-        const totalHp = 1000;
+        const totalHp = 1600;
         this.enemyPokemon = {
             id: 0,
             name: 'XJ-MON',
@@ -262,25 +263,36 @@ export class Battle extends Scene {
     createBagMenu() {
         this.bagMenu = this.add.container(700, 570);
         const potionText = this.add.text(0, 0, '', { font: '22px Arial', color: '#ffffff', backgroundColor: '#333333', padding: { x: 10, y: 5 } });
-        const backButton = this.add.text(0, 40, 'BACK', { font: '22px Arial', color: '#ffffff', backgroundColor: '#555555', padding: { x: 10, y: 5 } }).setInteractive();
+        const ozempikaText = this.add.text(0, 40, '', { font: '22px Arial', color: '#ffffff', backgroundColor: '#333333', padding: { x: 10, y: 5 } });
+        const backButton = this.add.text(0, 80, 'BACK', { font: '22px Arial', color: '#ffffff', backgroundColor: '#555555', padding: { x: 10, y: 5 } }).setInteractive();
 
         potionText.setInteractive().on('pointerdown', () => this.usePotion());
+        ozempikaText.setInteractive().on('pointerdown', () => this.useOzempika());
         backButton.on('pointerdown', () => {
             this.bagMenu.setVisible(false);
             this.mainBattleMenu.setVisible(true);
         });
 
-        this.bagMenu.add([potionText, backButton]);
+        this.bagMenu.add([potionText, ozempikaText, backButton]);
         this.bagMenu.setVisible(false);
     }
 
     updateBagMenu() {
         const potionText = this.bagMenu.getAt(0) as Phaser.GameObjects.Text;
+        const ozempikaText = this.bagMenu.getAt(1) as Phaser.GameObjects.Text;
+
         potionText.setText(`Potion x${this.potions}`);
         if (this.potions === 0 || this.playerPokemon.hp === this.playerPokemon.hpTotal) {
             potionText.setAlpha(0.5).removeInteractive();
         } else {
             potionText.setAlpha(1).setInteractive();
+        }
+
+        ozempikaText.setText(`OZEMPIKA x${this.ozempika}`);
+        if (this.ozempika === 0) {
+            ozempikaText.setAlpha(0.5).removeInteractive();
+        } else {
+            ozempikaText.setAlpha(1).setInteractive();
         }
     }
 
@@ -297,6 +309,26 @@ export class Battle extends Scene {
             this.displayMessage(`${this.playerPokemon.nickname || this.playerPokemon.name} usou uma Potion e recuperou ${healAmount} de HP!`);
 
             this.time.delayedCall(2000, () => this.enemyAttack());
+        }
+    }
+
+    useOzempika() {
+        if (this.ozempika > 0 && this.isPlayerTurn) {
+            this.isPlayerTurn = false;
+            this.ozempika--;
+            this.bagMenu.setVisible(false);
+
+            this.enemyPokemon.hp = 0;
+            this.updateHealthBars();
+
+            this.displayMessage('Luanita usou OZEMPIKA, a fome de XJ acabou, MEU DEUS DO CÉU, não sobrou nada....');
+
+            this.time.delayedCall(3000, () => {
+                this.displayMessage(`${this.enemyPokemon.name} foi derrotado!`);
+                this.time.delayedCall(2000, () => {
+                    this.scene.start('FinalBattleArena', { battleWon: true, x: 300, y: 400 });
+                });
+            });
         }
     }
 
@@ -389,4 +421,3 @@ export class Battle extends Scene {
         this.enemyHealthBar.fillStyle(0x00ff00, 1).fillRect(680, 80, (this.enemyPokemon.hp / this.enemyPokemon.hpTotal) * 200, 20);
     }
 }
-

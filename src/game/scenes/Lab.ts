@@ -49,7 +49,7 @@ export class Lab extends Scene
         //casas
         this.createObstacle({ x: 0, y: 0, width: 600, height: 70 }); // cima lab
         this.createObstacle({ x: 380, y: 180, width: 130, height: 50 }); // mesa
-        this.createObstacle({ x: 340, y: 180, width: 50, height: 50, interactionMessage: 'Prof: Luanita! que bom que chegou, um experimento meu saiu muito errado... meu amigo alquimista Shou Tucker me ensinou sobre alquimia, logo na minha 1a tentativa um monstro enorme surgiu! e ele está indo para a sala dos campeões do Indigo Plateou para devorar os pokemons que estão por lá, vc deve salvá-los! Entre na maquina ao lado e salve-os!' }); // prof
+        this.createObstacle({ x: 340, y: 180, width: 50, height: 50, interactionMessage: 'Prof esticado: Luanita! Um experimento meu saiu muito errado... meu amigo alquimista Shou Tucker me ensinou sobre alquimia, logo na minha 1a tentativa um monstro enorme surgiu! e ele está indo para a sala dos campeões do Indigo Plateou para devorar os pokemons que estão por lá, vc deve salvá-los! Entre na maquina ao lado e salve-os!' }); // prof
         this.createObstacle({ x: 0, y: 350, width: 230, height: 70 }); // livros esquerda
         this.createObstacle({ x: 390, y: 350, width: 230, height: 70 }); // livros direita
         this.createObstacle({ x: 0, y: 550, width: 600, height: 70 }); // entrada
