@@ -19,6 +19,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
     const sceneRef = useRef<Phaser.Scene | null>(null);
     const [isMenuVisible, setMenuVisible] = useState(false);
     const [dialogText, setDialogText] = useState('');
+    const [pokemonCardId, setPokemonCardId] = useState<number | null>(null);
     const [teleportOnClose, setTeleportOnClose] = useState<any>(null);
 
     const openMenu = () => {
@@ -45,6 +46,11 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
         } else {
             EventBus.emit('resume-game');
         }
+    }
+
+    const closePokemonCard = () => {
+        setPokemonCardId(null);
+        EventBus.emit('resume-game');
     }
 
     useLayoutEffect(() =>
@@ -130,13 +136,21 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
 
         EventBus.on('show-dialog', handleShowDialog);
 
+        const handleShowPokemonCard = (pokemonId: number) => {
+            setPokemonCardId(pokemonId);
+            EventBus.emit('pause-game');
+        };
+
+        EventBus.on('show-pokemon-card', handleShowPokemonCard);
+
         return () => {
             EventBus.removeListener('show-dialog', handleShowDialog);
+            EventBus.removeListener('show-pokemon-card', handleShowPokemonCard);
         };
     }, []);
 
     return (
-        <>
+        <div style={{ position: 'relative', width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <button
                 onClick={openMenu}
                 style={{
@@ -198,12 +212,12 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
                     <button
                         onClick={closeMenu}
                         onMouseOver={e => e.currentTarget.style.color='#022e52ff'}
-                        onMouseOut={e => e.currentTarget.style.color='blue'}
+                        onMouseOut={e => e.currentTarget.style.color='red'}
                         style={{
                             width: '100%',
                             padding: '10px',
                             backgroundColor: 'transparent',
-                            color: 'blue',
+                            color: 'red',
                             border: 'none',
                             cursor: 'pointer',
                             fontSize: '18px',
@@ -211,25 +225,64 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
                             fontFamily: 'Arial Black'
                         }}
                     >
-                        FECHAR
+                        Fechar
                     </button>
                 </div>
             )}
-            <div style={{ width: '1024px', margin: '0 auto' }}>
-                <div id="game-container"></div>
-                {dialogText && (
-                    <div style={{
-                        width: '100%',
-                        height: '150px',
-                        backgroundColor: 'black',
-                        border: '2px solid white',
-                        color: 'white',
+            {pokemonCardId && (
+                <div
+                    style={{
+                        position: 'absolute',
+                        top: '45%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
                         padding: '20px',
-                        fontFamily: 'Arial, sans-serif',
-                        fontSize: '24px',
-                        boxSizing: 'border-box',
-                        position: 'relative'
-                    }}>
+                        border: '2px solid white',
+                        zIndex: 1002,
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}
+                >
+                    <img src={`/assets/cards/${pokemonCardId}.png`} alt="Pokemon Card" style={{ maxWidth: '300px', maxHeight: '400px' }} />
+                    <button
+                        onClick={closePokemonCard}
+                        style={{
+                            marginTop: '20px',
+                            padding: '10px 20px',
+                            fontFamily: 'Arial Black',
+                            fontSize: '18px',
+                            color: 'white',
+                            backgroundColor: 'black',
+                            border: '2px solid white',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        Fechar
+                    </button>
+                </div>
+            )}
+            <div style={{ position: 'relative', width: '1024px', height: '768px' }}>
+                <div id="game-container" style={{ width: '100%', height: '100%' }}></div>
+                {dialogText && (
+                    <div
+                        style={{
+                            position: 'absolute',
+                            bottom: '0',
+                            left: '0',
+                            width: '100%',
+                            height: '150px',
+                            backgroundColor: 'black',
+                            border: '2px solid white',
+                            color: 'white',
+                            padding: '20px',
+                            fontFamily: 'Arial, sans-serif',
+                            fontSize: '24px',
+                            boxSizing: 'border-box',
+                            zIndex: 1001
+                        }}>
                         <button
                             onClick={closeDialog}
                             style={{
@@ -249,6 +302,6 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
                     </div>
                 )}
             </div>
-        </>
+        </div>
     );
 });

@@ -72,7 +72,7 @@ export class FinalBattleArena extends Scene
         this.player.setCollideWorldBounds(true);
 
         //casas
-        // this.labObstacle = this.createObstacle({ x: 0, y: 310, width: 600, height: 70 }); // cima lab
+        this.arenaObstacle = this.createObstacle({ x: 0, y: 310, width: 600, height: 70 }); // cima finalArena
 
         this.createObstacle({ 
             x: 300, 
@@ -274,13 +274,6 @@ export class FinalBattleArena extends Scene
         }
         this.scene.start('MainMenu');
     }
-
-    // private teleport(teleportTo: { scene: string, x: number, y: number }) {
-    //     if (this.physics && this.physics.world) {
-    //         this.physics.resume();
-    //     }
-    //     this.scene.start(teleportTo.scene, { x: teleportTo.x, y: teleportTo.y });
-    // }
 
     private createObstacle(options: {
         x: number;

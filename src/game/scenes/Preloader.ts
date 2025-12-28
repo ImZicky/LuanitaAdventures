@@ -56,6 +56,8 @@ export class Preloader extends Scene
         const playerTeamIds = [448, 94, 6, 658, 724, 418]; // Lucario, Gengar, Charizard, Greninja, Decidueye, Buizel
         playerTeamIds.forEach(id => {
             this.load.image(`player_${id}_back`, `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${id}.png`);
+            this.load.image(`pokemon_${id}_front`, `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`);
+            this.load.image(`pokemon_card_${id}`, `cards/${id}.png`);
         });
     }
 
