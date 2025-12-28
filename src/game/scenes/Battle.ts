@@ -42,6 +42,8 @@ export class Battle extends Scene {
     async create() {
         const loadingText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2, 'Preparando Batalha...', { font: '32px Arial', color: '#ffffff' }).setOrigin(0.5);
 
+        this.cameras.main.setBackgroundColor(0x000000);
+
         // 1. Montar a equipe do jogador (busca de dados)
         // const playerTeamIds = [448, 94, 6, 658, 724, 418]; // Lucario, Gengar, Charizard, Greninja, Decidueye, Buizel
         const playerTeamIds = [448] // testing only
@@ -55,7 +57,7 @@ export class Battle extends Scene {
         this.playerPokemon = this.playerTeam[this.currentPlayerIndex];
 
         // 2. Calcular o HP total e criar o inimigo
-        const totalHp = 1;
+        const totalHp = 1000;
         this.enemyPokemon = {
             id: 0,
             name: 'XJ-MON',
