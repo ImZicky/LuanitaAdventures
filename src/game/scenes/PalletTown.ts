@@ -61,9 +61,10 @@ export class PalletTown extends Scene
         
         
         //flores
-        this.createObstacle({ x: 450, y: 530, width: 20 , height: 20 , interactionMessage: 'Sei que você pediu cartas de Pokémon, mas achei que te colocar dentro de um jogo Pokémon seria mais divertido 😄 Feliz aniversário, Luanita! — Lucas Simões'}); // placa campo de flores
+        this.createObstacle({ x: 450, y: 530, width: 20 , height: 20, interactionMessage: 'Canteiro de flores Luanita Lied Rodriguez' }); // placa campo de flores
+        this.createObstacle({ x: 330, y: 680, width: 60 , height: 10, interactionMessage: 'Bulba: Sei que você pediu cartas de Pokémon, mas achei que te colocar dentro de um jogo Pokémon seria mais divertido 😄 Feliz aniversário, Luanita!' }); // buba
         this.createObstacle({ x: 250, y: 530, width: 150 , height: 10 }); // cerca do canteiro de flores
-        this.createObstacle({ x: 250, y: 680, width: 20 , height: 20 , interactionMessage: 'Não conheço todas as flores do mundo, mas quis deixar esse cantinho aqui pra te desejar coisas boas. Que seu novo ano venha leve, divertido e cheio de conquistas!'}); // placa campo de flores
+        this.createObstacle({ x: 250, y: 680, width: 20 , height: 10 , interactionMessage: 'Não conheço todas as flores do mundo, mas quis deixar esse cantinho aqui pra te desejar coisas boas. Que seu novo ano venha leve, divertido e cheio de conquistas!'}); // placa campo de flores
 
         this.createObstacle({ x: 630, y: 770, width: 250 , height: 10 }); // cerca do canteiro de flores 2
         this.createObstacle({ x: 780, y: 770, width: 20 , height: 20 , interactionMessage: 'Esse é o Laboratório do professor Carvalho! Melhor me apressar e ver o que ele quer comigo...'}); // placa campo do lab
@@ -238,8 +239,8 @@ export class PalletTown extends Scene
         color?: number;
         alpha?: number;
     }) {
-        const { x, y, width, height, interactionMessage, teleportTo, alpha = 0.3 } = options;
-        let { color = 0xff0000 } = options;
+        const { x, y, width, height, interactionMessage, teleportTo, alpha = 0.0 } = options;
+        let { color = 0xffffff } = options;
 
         if (interactionMessage) {
             color = 0x00ff00;

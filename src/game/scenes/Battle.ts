@@ -312,7 +312,7 @@ export class Battle extends Scene {
             this.time.delayedCall(1500, () => {
                 this.displayMessage(`${this.enemyPokemon.name} foi derrotado!`);
                 this.time.delayedCall(2000, () => {
-                    this.scene.start('FinalBattleArena', { battleWon: true, x: 300, y: 550 });
+                    this.scene.start('FinalBattleArena', { battleWon: true, x: 300, y: 400 });
                 });
             });
             return;

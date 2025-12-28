@@ -52,6 +52,7 @@ export class HomeFirstFloor extends Scene
         this.createObstacle({ x: 100, y: 0, width: 100, height: 50 }); // armarinho
         this.createObstacle({ x: 0, y: 280, width: 50, height: 100 }); // planta esquerda
         this.createObstacle({ x: 520, y: 280, width: 50, height: 100 }); // planta direita
+        this.createObstacle({ x: 480, y: 280, width: 50, height: 50, interactionMessage: 'Mãe: Oi minha filha, Parabéns !!! é seu aniversário e estou muito feliz por mais um ciclo na sua vida, espero que você seja a melhor mãe do mundo pra o Liam, se esforce pra isso! Aé verdade... o Professor Carvalho me disse que tá te esperando no laboratório, parece que algo urgente ocorreu por lá em um experimento e só você pode ajudar...' }); // mae
         this.createObstacle({ x: 240, y: 0, width: 50, height: 50, interactionMessage: 'Nossa pelo visto o clima hoje vai ser bem ensolarado de novo... saudade de um friozinho...' });
         this.createObstacle({ x: 200, y: 180, width: 180, height: 100, interactionMessage: 'Não tem um pão nessa casa... mais tarde vou jogar um Tekkenzinho pra desestressar dessa fome que eu to ">-<' });
 
@@ -222,8 +223,8 @@ export class HomeFirstFloor extends Scene
         color?: number;
         alpha?: number;
     }) {
-        const { x, y, width, height, interactionMessage, teleportTo, alpha = 0.3 } = options;
-        let { color = 0xff0000 } = options;
+        const { x, y, width, height, interactionMessage, teleportTo, alpha = 0.0 } = options;
+        let { color = 0xffffff } = options;
 
         if (interactionMessage) {
             color = 0x00ff00;

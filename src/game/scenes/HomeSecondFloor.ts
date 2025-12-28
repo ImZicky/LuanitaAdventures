@@ -46,19 +46,20 @@ export class HomeSecondFloor extends Scene
         this.player = this.physics.add.sprite(130, 280, 'luanita-front-stopped').setDepth(1);
         this.player.setCollideWorldBounds(true); // Player collides with world bounds
 
-        this.createObstacle({ x: 40, y: 220, width: 60, height: 100, interactionMessage: 'Essa é minha cama, o Tsuki ama dormir aqui comigo... Inclusive... Onde está o Tsuki? será que o Dev ficou com preguiça de colocar ele aqui??? hm....' });
-        this.createObstacle({ x: 0, y: 0, width: 100, height: 60, interactionMessage: 'Esse é meu PC Gamer de 50k dol, jogo muito Monster Hunter aqui e posto meus pensamentos sobre os pobres macacos bostileiros ^^' });
-        this.createObstacle({ x: 150, y: 0, width: 100, height: 60, interactionMessage: 'Aqui estão os meus livros, muita coisa sobre Massoterapia, Letras e se olhar bem atento... melhor nem lembrar oq tem ali...' });
+        this.createObstacle({ x: 40, y: 220, width: 60, height: 100, interactionMessage: 'Essa é minha cama, o Tsuki ama dormir aqui... Ele é o meu gato mais companheiro, sempre tá comigo onde quer que eu ande nessa casa S2' });
+        this.createObstacle({ x: 0, y: 0, width: 100, height: 60, interactionMessage: 'Esse é meu PC Gamer de multi-milionária, aqui é onde eu jogo muito Monster Hunter, Tekken e etc...  Aé também amo postar meus pensamentos sobre os pobres macacos da região de Bostíl ^^' });
+        this.createObstacle({ x: 150, y: 0, width: 100, height: 60, interactionMessage: 'Aqui estão os meus livros, muita coisa sobre Massoterapia, Letras e se olhar bem de pertinho... tem um Kama Sutra :P' });
         this.createObstacle({ x: 365, y: 50, width: 50, height: 50 });
-        this.createObstacle({ x: 490, y: -20, width: 50, height: 30, interactionMessage: 'Verdade! preciso ir até o Professor Caralh... digo digo, Carvalho! Pois ele me chamou pra algo "especial" seja lá oque isso quer dizer...' });
-        this.createObstacle({ x: 230, y: 170, width: 60, height: 100, interactionMessage: 'Esse é meu Super Nintendo que eu peguei numa pexinxa aqui na feira do rolo do Chile, digo.. digo... Cidade de Pallet! Eu amo meus consoles classicos e meu sonho é um dia estar em um jogo... se eu pudesse escolher... acho que Pokemon!' });
+        this.createObstacle({ x: 490, y: -20, width: 50, height: 30, interactionMessage: 'Nossa! Hoje é meu aniversário!!! Parabéns pra mim!!!' });
+        this.createObstacle({ x: 230, y: 170, width: 60, height: 100, interactionMessage: 'Esse é meu Super Nintendo que eu peguei aqui na feira do rolo do Chile, digo.. digo... Cidade de Pallet! Eu amo meus consoles clássicos e meu sonho é um dia estar em um jogo... se eu pudesse escolher... acho que em algum Pokemon de gba :)' });
+        this.createObstacle({ x: 500, y: 380, width: 60, height: 60, interactionMessage: 'Esse pedaço de pau eu achei na rua, era bonito demais pra ir pra o lixo, então virou minha decoração, é o que dizem: "O lixo de um é o tesouro dos outros"' });
 
         // Teleport obstacle
         this.createObstacle({
-            x: 420,
-            y: 60,
+            x: 400,
+            y: 90,
             width: 20,
-            height: 50,
+            height: 60,
             teleportTo: {
                 scene: 'HomeFirstFloor',
                 x: 420,
@@ -271,8 +272,8 @@ export class HomeSecondFloor extends Scene
         color?: number;
         alpha?: number;
     }) {
-        const { x, y, width, height, interactionMessage, teleportTo, alpha = 0.3 } = options;
-        let { color = 0xff0000 } = options;
+        const { x, y, width, height, interactionMessage, teleportTo, alpha = 0.0 } = options;
+        let { color = 0xffffff } = options;
 
         if (interactionMessage) {
             color = 0x00ff00;

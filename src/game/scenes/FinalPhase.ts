@@ -34,6 +34,8 @@ export class FinalPhase extends Scene
         MusicManager.playMusic(this, 'defaultPalletTown');
 
         this.camera = this.cameras.main;
+        this.camera.setBackgroundColor(0x000000);
+
         this.background = this.add.image(0, 0, 'FinalPhase').setOrigin(0, 0);
         this.background.setScale(3);
 
@@ -46,7 +48,7 @@ export class FinalPhase extends Scene
         this.player.setInteractive(false);
 
         this.createObstacle({ x: 0, y: 0, width: 200, height: 100 }); // cima arena esq
-        this.createObstacle({ x: 230, y: 120, width: 70, height: 30, interactionMessage: 'PARABÉNS!!! GRAÇAS AO PODER DO VEGETARIANISMO O XJ-MON FOI DERROTADO!!! e é claro, parabéns por mais um ano de vida ;) espero que tenha gostado do meu presente, já tentou interagir com os seus pokemons favoritos aqui dessa sala? garanto que vai valer apena! E bom, espero ter tirado ao menos um sorriso seu'}); // cima arena meio
+        this.createObstacle({ x: 230, y: 120, width: 70, height: 30, interactionMessage: 'Bulba: PARABÉNS!!! GRAÇAS AO PODER DO VEGETARIANISMO O XJ-MON FOI DERROTADO!!! e é claro, parabéns por mais um ano de vida ;) espero que tenha gostado do meu presente, já tentou interagir com os seus pokemons favoritos aqui dessa sala? garanto que vai valer apena! E bom, espero ter tirado ao menos um sorriso seu'}); // bulba
         this.createObstacle({ x: 340, y: 0, width: 200, height: 100 }); // cima arena dir
 
         this.createObstacle({ x: 0, y: 550, width: 200, height: 400 }); // baixo arena
@@ -285,8 +287,8 @@ export class FinalPhase extends Scene
         color?: number;
         alpha?: number;
     }) {
-        const { x, y, width, height, interactionMessage, teleportTo, alpha = 0.3 } = options;
-        let { color = 0xff0000 } = options;
+        const { x, y, width, height, interactionMessage, teleportTo, alpha = 0.0 } = options;
+        let { color = 0xffffff } = options;
 
         if (interactionMessage) {
             color = 0x00ff00;

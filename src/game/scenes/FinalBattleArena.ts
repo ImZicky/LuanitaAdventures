@@ -54,6 +54,20 @@ export class FinalBattleArena extends Scene
                             this.arenaObstacle.setVisible(false)
                             this.arenaObstacle.destroy();
                         }
+                                            
+                        this.createObstacle({ 
+                            x: 300, 
+                            y: 50, 
+                            width: 20, 
+                            height: 20,                            
+                            teleportTo: {
+                                scene: 'FinalPhase',
+                                x: 270,
+                                y: 800
+                            },
+                            color: 0x800080, // Purple
+                            alpha: 1.0 // Visível
+                        }); 
                     });
                 });
             });
@@ -73,20 +87,6 @@ export class FinalBattleArena extends Scene
 
         //casas
         this.arenaObstacle = this.createObstacle({ x: 0, y: 310, width: 600, height: 70 }); // cima finalArena
-
-        this.createObstacle({ 
-            x: 300, 
-            y: 50, 
-            width: 20, 
-            height: 20,
-            teleportTo: {
-                scene: 'FinalPhase',
-                x: 300,
-                y: 800
-            },
-            color: 0x800080, // Purple
-            alpha: 0.5
-         }); // maquina de teleportemeio arena
         this.createObstacle({ x: 0, y: 0, width: 250, height: 200 }); // cima arena
         this.createObstacle({ x: 370, y: 0, width: 200, height: 200 }); // cima arena
 
@@ -101,7 +101,7 @@ export class FinalBattleArena extends Scene
             y: 330,
             width: 50,
             height: 50,
-            interactionMessage: 'Eu sou o XJ, e eu devorarei todos os Pokemons da região de Kanto e do mundo!!! Se ajoelhe perante a mim sua reles vegetariana! MUAHAHA HAHAHA',
+            interactionMessage: 'XJ-MON: Eu sou o XJ-MON, e eu devorarei todos os Pokemons da região de Kanto e do mundo!!! Se ajoelhe perante a mim sua reles vegetariana! MUAHAHA HAHAHA',
             teleportTo: {
                 scene: 'Battle',
                 x: 0,
@@ -112,19 +112,7 @@ export class FinalBattleArena extends Scene
         });
 
 
-        this.createObstacle({ 
-            x: 300, 
-            y: 50, 
-            width: 20, 
-            height: 20,
-            teleportTo: {
-                scene: 'FinalPhase',
-                x: 300,
-                y: 800
-            },
-            color: 0x800080, // Purple
-            alpha: 0.5
-         }); // maquina de teleporte
+
 
 
 
@@ -289,8 +277,8 @@ export class FinalBattleArena extends Scene
         color?: number;
         alpha?: number;
     }): Phaser.GameObjects.Rectangle {
-        const { x, y, width, height, interactionMessage, teleportTo, alpha = 0.3 } = options;
-        let { color = 0xff0000 } = options;
+        const { x, y, width, height, interactionMessage, teleportTo, alpha = 0.0 } = options;
+        let { color = 0xffffff } = options;
 
         if (interactionMessage) {
             color = 0x00ff00;
