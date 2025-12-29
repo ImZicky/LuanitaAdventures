@@ -1,7 +1,7 @@
 import { Scene } from 'phaser';
 import { EventBus } from '../EventBus';
 import { PokemonForBattle, PokemonForBattleSkills } from '../types/PokemonForBattle';
-
+import MusicManager from '../MusicManager';
 import { usePokemonService } from '../services/pokemonService';
 
 const pokemonService = usePokemonService();
@@ -44,6 +44,7 @@ export class Battle extends Scene {
         const loadingText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height / 2, 'Preparando Batalha...', { font: '32px Arial', color: '#ffffff' }).setOrigin(0.5);
 
         this.cameras.main.setBackgroundColor(0x000000);
+        MusicManager.playMusic(this, 'battle-music');
 
         // 1. Montar a equipe do jogador (busca de dados)
         const playerTeamIds = [448, 94, 6, 658, 724, 418]; // Lucario, Gengar, Charizard, Greninja, Decidueye, Buizel

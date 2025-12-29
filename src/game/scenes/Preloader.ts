@@ -50,6 +50,7 @@ export class Preloader extends Scene
         this.load.audio('defaultPalletTown', 'musics/defaultPalletTown.mp3');
         this.load.audio('interaction-sound', 'musics/selectButton.mp3');
         this.load.audio('poke-menu-audio', 'poke-menu.mp3');
+        this.load.audio('battle-music', 'musics/battle.mp3');
         this.load.video('poke-intro', 'poke-intro.mp4');
 
         // Carrega estaticamente os sprites dos Pokémon da equipe
