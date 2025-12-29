@@ -177,6 +177,7 @@ export class PalletTown extends Scene
         }
 
         const interactionDistance = 110;
+        let interactionAvailable = false;
 
         for (const obstacle of this.interactiveObstacles) {
             const distance = Phaser.Math.Distance.Between(
@@ -187,10 +188,12 @@ export class PalletTown extends Scene
             );
 
             if (distance < interactionDistance) {
-                if (Phaser.Input.Keyboard.JustDown(this.keys.SPACE)) {
-                    const message = obstacle.getData('interactionMessage');
-                    const teleportTo = obstacle.getData('teleportTo');
+                const message = obstacle.getData('interactionMessage');
+                const teleportTo = obstacle.getData('teleportTo');
 
+                interactionAvailable = !!message || !!teleportTo;
+
+                if (interactionAvailable && Phaser.Input.Keyboard.JustDown(this.keys.SPACE)) {
                     if (teleportTo) {
                         this.scene.start(teleportTo.scene, { x: teleportTo.x, y: teleportTo.y });
                     } else if (message) {
@@ -200,6 +203,8 @@ export class PalletTown extends Scene
                 break;
             }
         }
+
+        EventBus.emit('interaction-available', interactionAvailable);
     }
 
     shutdown() {

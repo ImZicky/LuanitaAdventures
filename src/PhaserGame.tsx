@@ -21,6 +21,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
     const [dialogText, setDialogText] = useState('');
     const [pokemonCardId, setPokemonCardId] = useState<number | null>(null);
     const [teleportOnClose, setTeleportOnClose] = useState<any>(null);
+    const [canInteract, setCanInteract] = useState(false);
 
     const openMenu = () => {
         setMenuVisible(true);
@@ -143,9 +144,16 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
 
         EventBus.on('show-pokemon-card', handleShowPokemonCard);
 
+        const handleInteractionAvailable = (available: boolean) => {
+            setCanInteract(available);
+        };
+
+        EventBus.on('interaction-available', handleInteractionAvailable);
+
         return () => {
             EventBus.removeListener('show-dialog', handleShowDialog);
             EventBus.removeListener('show-pokemon-card', handleShowPokemonCard);
+            EventBus.removeListener('interaction-available', handleInteractionAvailable);
         };
     }, []);
 
@@ -265,6 +273,25 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
                 </div>
             )}
             <div style={{ position: 'relative', width: '1024px', height: '768px' }}>
+                {canInteract && (
+                    <div
+                        style={{
+                            position: 'absolute',
+                            top: '10px',
+                            right: '10px',
+                            zIndex: 1000,
+                            padding: '8px 16px',
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            color: 'white',
+                            border: '2px solid white',
+                            fontFamily: 'Arial Black',
+                            fontSize: '18px',
+                            pointerEvents: 'none'
+                        }}
+                    >
+                        [SPACE] - Interagir
+                    </div>
+                )}
                 <div id="game-container" style={{ width: '100%', height: '100%' }}></div>
                 {dialogText && (
                     <div

@@ -196,8 +196,8 @@ export class HomeSecondFloor extends Scene
             this.player.setTexture(`luanita-${this.lastDirection}-stopped`);
         }
 
-        // --- Interaction Logic ---
-        const interactionDistance = 110; // The distance in pixels to allow interaction
+        const interactionDistance = 110;
+        let interactionAvailable = false;
 
         for (const obstacle of this.interactiveObstacles) {
             const distance = Phaser.Math.Distance.Between(
@@ -208,19 +208,23 @@ export class HomeSecondFloor extends Scene
             );
 
             if (distance < interactionDistance) {
-                if (Phaser.Input.Keyboard.JustDown(this.keys.SPACE)) {
-                    const message = obstacle.getData('interactionMessage');
-                    const teleportTo = obstacle.getData('teleportTo');
+                const message = obstacle.getData('interactionMessage');
+                const teleportTo = obstacle.getData('teleportTo');
 
+                interactionAvailable = !!message || !!teleportTo;
+
+                if (interactionAvailable && Phaser.Input.Keyboard.JustDown(this.keys.SPACE)) {
                     if (teleportTo) {
                         this.scene.start(teleportTo.scene, { x: teleportTo.x, y: teleportTo.y });
                     } else if (message) {
                         EventBus.emit('show-dialog', message);
                     }
                 }
-                break; // Interact with the first obstacle in range
+                break;
             }
         }
+
+        EventBus.emit('interaction-available', interactionAvailable);
     }
 
     shutdown() {

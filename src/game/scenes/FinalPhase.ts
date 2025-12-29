@@ -182,6 +182,7 @@ export class FinalPhase extends Scene
         }
 
         const interactionDistance = 110;
+        let interactionAvailable = false;
 
         for (const obstacle of this.interactiveObstacles) {
             const distance = Phaser.Math.Distance.Between(
@@ -192,11 +193,13 @@ export class FinalPhase extends Scene
             );
 
             if (distance < interactionDistance) {
-                if (Phaser.Input.Keyboard.JustDown(this.keys.SPACE)) {
-                    const message = obstacle.getData('interactionMessage');
-                    const teleportTo = obstacle.getData('teleportTo');
-                    const pokemonId = obstacle.getData('pokemonId');
+                const message = obstacle.getData('interactionMessage');
+                const teleportTo = obstacle.getData('teleportTo');
+                const pokemonId = obstacle.getData('pokemonId');
 
+                interactionAvailable = !!message || !!teleportTo || !!pokemonId;
+
+                if (interactionAvailable && Phaser.Input.Keyboard.JustDown(this.keys.SPACE)) {
                     if (pokemonId) {
                         EventBus.emit('show-pokemon-card', pokemonId);
                     }
@@ -210,6 +213,8 @@ export class FinalPhase extends Scene
                 break;
             }
         }
+
+        EventBus.emit('interaction-available', interactionAvailable);
     }
 
     shutdown() {
