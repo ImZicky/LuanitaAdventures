@@ -1,6 +1,7 @@
 import { Scene } from 'phaser';
 import { EventBus } from '../EventBus';
 import { PokemonForBattle } from '../types/PokemonForBattle';
+import MusicManager from '../MusicManager';
 //import MusicManager from '../MusicManager';
 
 export class MainMenu extends Scene
@@ -23,24 +24,36 @@ export class MainMenu extends Scene
 
     create ()
     {
-        // MusicManager.playMusic(this, 'main-menu-music');
+        MusicManager.playMusic(this, 'poke-menu-audio');
 
-        this.add.image(512, 384, 'background');
+        const camera = this.cameras.main;
+        camera.setBackgroundColor(0x000000);
 
-        this.logo = this.add.image(512, 300, 'logo').setDepth(100);
+        const centerX = camera.width / 2;
+        const centerY = camera.height / 2;
 
-        this.logoTween = this.tweens.add({
-            targets: this.logo,
-            scaleX: 1.2,
-            scaleY: 1.2,
-            ease: 'Sine.easeInOut',
-            duration: 1000,
-            yoyo: true,
-            repeat: -1
+        const backgroundVideo = this.add.video(centerX, centerY, 'poke-menu-background-video');
+        backgroundVideo.setOrigin(0.5);
+        backgroundVideo.setLoop(true);
+        backgroundVideo.setMute(true);
+
+        backgroundVideo.on('play', () => {
+            const htmlVideo = backgroundVideo.video;
+            const sourceWidth = htmlVideo && htmlVideo.videoWidth ? htmlVideo.videoWidth : backgroundVideo.width;
+            const sourceHeight = htmlVideo && htmlVideo.videoHeight ? htmlVideo.videoHeight : backgroundVideo.height;
+
+            if (sourceWidth > 0 && sourceHeight > 0) {
+                const scaleX = camera.width / sourceWidth;
+                const scaleY = camera.height / sourceHeight;
+                const scale = Math.max(scaleX, scaleY);
+                backgroundVideo.setScale(scale);
+            }
         });
 
-        const startButton = this.add.text(512, 550, 'INICIAR', {
-            fontFamily: 'Arial Black', fontSize: 28, color: '#ffffff',
+        backgroundVideo.play();
+
+        const startButton = this.add.text(350, 640, 'CLIQUE AQUI E INICIE', {
+            fontFamily: 'Arial Black', fontSize: 50, color: '#ffffff', backgroundColor: '#000',
             stroke: '#000000', strokeThickness: 6,
             align: 'center'
         }).setDepth(100).setOrigin(0.5);
