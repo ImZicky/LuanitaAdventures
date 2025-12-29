@@ -33,7 +33,7 @@ export class FinalPhase extends Scene
     {
         this.interactiveObstacles = [];
 
-        MusicManager.playMusic(this, 'defaultPalletTown');
+        MusicManager.playMusic(this, 'final-phase-music');
 
         this.camera = this.cameras.main;
         this.camera.setBackgroundColor(0x000000);
