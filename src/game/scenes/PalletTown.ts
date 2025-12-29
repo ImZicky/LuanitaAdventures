@@ -50,17 +50,16 @@ export class PalletTown extends Scene
         this.createObstacle({ x: 250, y: 170, width: 220, height: 150 }); // casa 1
         
         this.createObstacle({ 
-            x: 280, 
+            x: 330, 
             y: 300, 
-            width: 30, 
-            height: 20,
+            width: 10, 
+            height: 10,
             teleportTo: {
                 scene: 'HomeFirstFloor',
-                x: 280,
+                x: 165,
                 y: 390
-            },
-            color: 0x800080, // Purple
-            alpha: 0.5 }); // casa 1
+            } 
+        }); // casa 1
 
         this.createObstacle({ x: 680, y: 170, width: 220, height: 150 }); // casa 2
         this.createObstacle({ x: 630, y: 460, width: 320, height: 150 }); // lab
@@ -100,9 +99,7 @@ export class PalletTown extends Scene
                 scene: 'Lab',
                 x: 300,
                 y: 500
-            },
-            color: 0x800080, // Purple
-            alpha: 0.5
+            }
         });
 
 

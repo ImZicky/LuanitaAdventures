@@ -50,7 +50,7 @@ export class HomeFirstFloor extends Scene
         this.player.setCollideWorldBounds(true);
 
         // Obstacles for HomeFirstFloor
-        this.createObstacle({ x: 0, y: 0, width: 100, height: 50, interactionMessage: 'Louça lavadinha... a mãe é braba demais :P' });
+        this.createObstacle({ x: 0, y: 0, width: 100, height: 50, interactionMessage: 'Louça lavadinha... a mãe é braba demais :P',  });
         this.createObstacle({ x: 100, y: 0, width: 100, height: 50 }); // armarinho
         this.createObstacle({ x: 0, y: 280, width: 50, height: 100 }); // planta esquerda
         this.createObstacle({ x: 520, y: 280, width: 50, height: 100 }); // planta direita
@@ -68,9 +68,7 @@ export class HomeFirstFloor extends Scene
                 scene: 'PalletTown',
                 x: 300,
                 y: 390
-            },
-            color: 0x800080, // Purple
-            alpha: 0.5
+            }
         });
 
         this.createObstacle({ 
@@ -82,9 +80,7 @@ export class HomeFirstFloor extends Scene
                 scene: 'HomeSecondFloor',
                 x: 430,
                 y: 90
-            },
-            color: 0x800080, // Purple
-            alpha: 0.5            
+            }          
         });
 
 

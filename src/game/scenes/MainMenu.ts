@@ -44,7 +44,7 @@ export class MainMenu extends Scene
 
             if (sourceWidth > 0 && sourceHeight > 0) {
                 const scaleX = camera.width / sourceWidth;
-                const scaleY = camera.height / sourceHeight;
+                const scaleY = camera.height / sourceHeight - 300;
                 const scale = Math.max(scaleX, scaleY);
                 backgroundVideo.setScale(scale);
             }
@@ -52,8 +52,8 @@ export class MainMenu extends Scene
 
         backgroundVideo.play();
 
-        const startButton = this.add.text(350, 640, 'CLIQUE AQUI E INICIE', {
-            fontFamily: 'Arial Black', fontSize: 50, color: '#ffffff', backgroundColor: '#000',
+        const startButton = this.add.text(350, 570, 'CLIQUE AQUI E INICIE', {
+            fontFamily: 'Arial Black', fontSize: 40, color: '#ffffff', backgroundColor: '#000',
             stroke: '#000000', strokeThickness: 6,
             align: 'center'
         }).setDepth(100).setOrigin(0.5);

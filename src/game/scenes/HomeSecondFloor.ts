@@ -66,9 +66,7 @@ export class HomeSecondFloor extends Scene
                 scene: 'HomeFirstFloor',
                 x: 420,
                 y: 100
-            },
-            color: 0x800080, // Purple
-            alpha: 0.5
+            }
         });
 
         this.player.setScale(0.015); // Ajuste na escala do personagem

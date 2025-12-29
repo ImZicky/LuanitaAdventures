@@ -64,9 +64,7 @@ export class FinalBattleArena extends Scene
                                 scene: 'FinalPhase',
                                 x: 270,
                                 y: 800
-                            },
-                            color: 0x800080, // Purple
-                            alpha: 1.0 // Visível
+                            }
                         }); 
                     });
                 });

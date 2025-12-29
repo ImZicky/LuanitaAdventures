@@ -63,9 +63,7 @@ export class Lab extends Scene
                 scene: 'FinalBattleArena',
                 x: 300,
                 y: 800
-            },
-            color: 0x800080, // Purple
-            alpha: 0.5
+            }
          }); // maquina de teleporte
 
 
@@ -78,9 +76,7 @@ export class Lab extends Scene
                 scene: 'PalletTown',
                 x: 780,
                 y: 650
-            },
-            color: 0x800080, // Purple
-            alpha: 0.5
+            }
          }); // palletTown
 
 
