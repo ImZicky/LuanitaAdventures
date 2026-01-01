@@ -77,7 +77,7 @@ export class PalletTown extends Scene
         
         //flores
         this.createObstacle({ x: 450, y: 530, width: 20 , height: 20, interactionMessage: 'Canteiro de flores Luanita Lied Rodriguez' }); // placa campo de flores
-        this.createObstacle({ x: 330, y: 680, width: 60 , height: 10, interactionMessage: 'Bulba: Sei que você pediu cartas de Pokémon, mas achei que te colocar dentro de um jogo Pokémon seria mais divertido 😄 Feliz aniversário, Luanita!' }); // buba
+        this.createObstacle({ x: 330, y: 680, width: 60 , height: 10, interactionMessage: 'Bulba: Sei que você pediu cartas de Pokémon, mas achei que te colocar dentro de um jogo Pokémon seria mais divertido 😄 Feliz aniversário, Luanita! ( Eu também não tenho seu endereço, então é o que me sobrou, usar a criatividade :P )' }); // buba
         this.createObstacle({ x: 250, y: 530, width: 150 , height: 10 }); // cerca do canteiro de flores
         this.createObstacle({ x: 250, y: 680, width: 20 , height: 10 , interactionMessage: 'Não conheço todas as flores do mundo, mas quis deixar esse cantinho aqui pra te desejar coisas boas. Que seu novo ano venha leve, divertido e cheio de conquistas!'}); // placa campo de flores
 
